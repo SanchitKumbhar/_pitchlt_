@@ -10,12 +10,14 @@ connectDB();
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+app.use("/media", express.static(path.join(__dirname, "media")));
 
 const port = 3000
 
 
 
 app.use("/api/auth",router);
+app.use("/api",router);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

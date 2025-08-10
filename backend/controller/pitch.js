@@ -32,14 +32,14 @@ const pitch_reg = async_handler(async (req, res) => {
         },
         categorization:{
             category:category?category.split(","):[],
-            privacy:privacy?privacy.split(","):[],
+            privacy,
             tags:tags?tags.split(","):[]
         },
-        createdBy:req.user.id
+        // createdBy:req.user.id
     })
 
     await new_pitch.save();
-    res.status(201).json({ message: "Pitch created successfully", pitch: newPitch });
+    res.status(201).json({ message: "Pitch created successfully", pitch: new_pitch });
 
 })
 
