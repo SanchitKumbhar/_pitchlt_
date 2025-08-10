@@ -8,7 +8,7 @@ router=express.Router()
 
 router.post("/signup",signup);
 router.post("/login",login)
-router.post("/create-pitch",token__middleware,uploads.fields([{name:"image",maxCount:1},{name:pitchDeck,maxCount:1}]),pitch);
+router.post("/create-pitch",token__middleware,uploads.fields([{name:"image",maxCount:1},{name:"pitchDeck",maxCount:1}]),pitch);
 
 
 module.exports=router;

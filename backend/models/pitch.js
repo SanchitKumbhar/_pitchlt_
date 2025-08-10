@@ -65,7 +65,8 @@ const pitchSchema = new mongoose.Schema({
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true
+    required: true,
+    default:"688f109522e9be696fce6852"
   }
 }, { timestamps: true });
 
