@@ -27,7 +27,7 @@ const pitch_reg = async_handler(async (req, res) => {
         },
         media:{
             image:req.files?.image?`/media/${Date.now()+req.files.image[0].filename}`:null,
-            pitchDeck:req.files?.image?`media/${Date.now()+req.files.pitchDeck[0].filename}`:null,
+            pitchDeck:req.files?.pitchDeck?`media/${Date.now()+req.files.pitchDeck[0].filename}`:null,
             videoLink
         },
         categorization:{
