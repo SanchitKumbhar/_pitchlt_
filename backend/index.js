@@ -127,6 +127,7 @@ const cors = require("cors");
 const path = require("path");
 const connectDB = require("./config/config");
 const userModel = require("./models/user");
+const routers=require("./router/router")
 
 dotenv.config();
 connectDB();
@@ -144,6 +145,8 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/media", express.static(path.join(__dirname, "media")));
+app.use("/api",routers);
+app.use("/api/auth",routers);
 
 const isProduction = process.env.NODE_ENV === "production";
 
