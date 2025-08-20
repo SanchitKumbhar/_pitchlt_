@@ -135,13 +135,7 @@ connectDB();
 const app = express();
 
 // Allow requests from your React frontend with credentials (cookies)
-app.use(
-  cors({
-    origin: "http://192.168.56.1:5173", // fixed origin
-    credentials: true,
-  })
-);
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/media", express.static(path.join(__dirname, "media")));

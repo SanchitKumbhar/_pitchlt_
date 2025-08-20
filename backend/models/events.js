@@ -5,16 +5,19 @@ const events = mongoose.Schema({
         type:mongoose.Schema.ObjectId,
         required:true,
         ref:"User",
+        default:"688f109522e9be696fce6852"
     },
     pitch_user:{
         type:mongoose.Schema.ObjectId,
         required:true,
         ref:"User",
+        default:"688f109522e9be696fce6852"
     },
     pitch:{
         type:mongoose.Schema.ObjectId,
         required:true,
         ref:"Pitch",
+        default:"689834f188b97f0e994c0187"
     },
     event_type:{
         type:String,
@@ -34,7 +37,7 @@ const events = mongoose.Schema({
         }
     },
     description:{
-        type:Text,
+        type:String,
         required:true
     },
     created_at:{
