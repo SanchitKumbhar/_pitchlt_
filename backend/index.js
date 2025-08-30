@@ -136,10 +136,7 @@ const app = express();
 
 // Allow requests from your React frontend with credentials (cookies)
 app.use(
-  cors({
-    origin: "http://192.168.56.1:5173", // fixed origin
-    credentials: true,
-  })
+  cors()
 );
 
 app.use(express.json());
@@ -150,101 +147,101 @@ app.use("/api/auth",routers);
 
 const isProduction = process.env.NODE_ENV === "production";
 
-// ---------------- REGISTER ----------------
-app.post("/register", (req, res) => {
-  let { username, email, password } = req.body;
+// // ---------------- REGISTER ----------------
+// app.post("/register", (req, res) => {
+//   let { username, email, password } = req.body;
 
-  // Simple validation
-  if (!username || !email || !password) {
-    return res.status(400).json({ error: "Please provide all fields" });
-  }
+//   // Simple validation
+//   if (!username || !email || !password) {
+//     return res.status(400).json({ error: "Please provide all fields" });
+//   }
 
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err)
-      return res
-        .status(500)
-        .json({ error: "Server error during salt generation" });
+//   bcrypt.genSalt(10, (err, salt) => {
+//     if (err)
+//       return res
+//         .status(500)
+//         .json({ error: "Server error during salt generation" });
 
-    bcrypt.hash(password, salt, async (err, hash) => {
-      if (err)
-        return res.status(500).json({ error: "Server error during hashing" });
+//     bcrypt.hash(password, salt, async (err, hash) => {
+//       if (err)
+//         return res.status(500).json({ error: "Server error during hashing" });
 
-      try {
-        let createdUser = await userModel.create({
-          username,
-          email,
-          password: hash,
-        });
+//       try {
+//         let createdUser = await userModel.create({
+//           username,
+//           email,
+//           password: hash,
+//         });
 
-        let token = jwt.sign({ email }, process.env.JWT_SECRET);
+//         let token = jwt.sign({ email }, process.env.JWT_SECRET);
 
-        res.cookie("token", token, {
-          httpOnly: true,
-          sameSite: "None",
-          secure: isProduction,
-        });
+//         res.cookie("token", token, {
+//           httpOnly: true,
+//           sameSite: "None",
+//           secure: isProduction,
+//         });
 
-        res.send(`
-          <script>
-            alert('User registered successfully');
-            window.location.href = "http://192.168.56.1:5173/login";
-          </script>
-        `);
-        console.log("User created:", createdUser);
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Error creating user" });
-      }
-    });
-  });
-});
+//         res.send(`
+//           <script>
+//             alert('User registered successfully');
+//             window.location.href = "http://192.168.56.1:5173/login";
+//           </script>
+//         `);
+//         console.log("User created:", createdUser);
+//       } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Error creating user" });
+//       }
+//     });
+//   });
+// });
 
-// ---------------- LOGIN ----------------
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+// // ---------------- LOGIN ----------------
+// app.post("/login", async (req, res) => {
+//   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ error: "Please provide email and password" });
-  }
+//   if (!email || !password) {
+//     return res.status(400).json({ error: "Please provide email and password" });
+//   }
 
-  try {
-    let user = await userModel.findOne({ email });
-    if (!user) return res.status(400).json({ error: "User not found" });
+//   try {
+//     let user = await userModel.findOne({ email });
+//     if (!user) return res.status(400).json({ error: "User not found" });
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ error: "Invalid password" });
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) return res.status(400).json({ error: "Invalid password" });
 
-    let token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+//     let token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "None",
-      secure: isProduction,
-    });
+//     res.cookie("token", token, {
+//       httpOnly: true,
+//       sameSite: "None",
+//       secure: isProduction,
+//     });
 
-    res.send(`
-      <script>
-        alert('Login successful');
-        window.location.href = "http://192.168.56.1:5173/dashboard";
-      </script>
-    `);
-    console.log("User logged in:", user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server error" });
-  }
-});
+//     res.send(`
+//       <script>
+//         alert('Login successful');
+//         window.location.href = "http://192.168.56.1:5173/dashboard";
+//       </script>
+//     `);
+//     console.log("User logged in:", user);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// });
 
 // ---------------- LOGOUT ----------------
-app.get("/logout", (req, res) => {
-  res.cookie("token", "", {
-    httpOnly: true,
-    sameSite: "None",
-    secure: isProduction,
-    expires: new Date(0),
-  });
-  res.redirect("http://192.168.56.1:5173");
-});
+// app.get("/logout", (req, res) => {
+//   res.cookie("token", "", {
+//     httpOnly: true,
+//     sameSite: "None",
+//     secure: isProduction,
+//     expires: new Date(0),
+//   });
+//   res.redirect("http://192.168.56.1:5173");
+// });
 
 // ---------------- START SERVER ----------------
 const port = process.env.PORT || 3000;
