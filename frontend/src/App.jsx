@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/signup" element={<Register />} />
         <Route path="/my-pitches" element={<MyPitches />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-pitch" element={<PitchModalForm />} />
