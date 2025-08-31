@@ -5,7 +5,7 @@ const user = require("../models/user")
 const jwt=require("jsonwebtoken");
 
 const signup = async_handler(async (req, res) => {
-    const {email,password}=req.body;
+    const {username,email,password}=req.body;
 
     const existance = await user.findOne({ email });
     if (existance) {
@@ -14,7 +14,7 @@ const signup = async_handler(async (req, res) => {
     }
     console.log(password);
     const hash=await bcrypt.hash(password,10);
-    const newuser = new user({email,password:hash});
+    const newuser = new user({username,email,password:hash});
     newuser.save();
     res.send({
         "message" : "User registered successfully!!!"

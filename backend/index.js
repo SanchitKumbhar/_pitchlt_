@@ -119,33 +119,33 @@
 // });
 
 // server.js
-const express = require("express");
-const dotenv = require("dotenv");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const cors = require("cors");
-const path = require("path");
-const connectDB = require("./config/config");
-const userModel = require("./models/user");
-const routers=require("./router/router")
+// const express = require("express");
+// const dotenv = require("dotenv");
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
+// const cors = require("cors");
+// const path = require("path");
+// const connectDB = require("./config/config");
+// const userModel = require("./models/user");
+// const routers=require("./router/router")
 
-dotenv.config();
-connectDB();
+// dotenv.config();
+// connectDB();
 
-const app = express();
+// const app = express();
 
-// Allow requests from your React frontend with credentials (cookies)
-app.use(
-  cors()
-);
+// // Allow requests from your React frontend with credentials (cookies)
+// app.use(
+//   cors()
+// );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use("/media", express.static(path.join(__dirname, "media")));
-app.use("/api",routers);
-app.use("/api/auth",routers);
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use("/media", express.static(path.join(__dirname, "media")));
+// app.use("/api",routers);
+// app.use("/api/auth",routers);
 
-const isProduction = process.env.NODE_ENV === "production";
+// const isProduction = process.env.NODE_ENV === "production";
 
 // // ---------------- REGISTER ----------------
 // app.post("/register", (req, res) => {
@@ -244,6 +244,40 @@ const isProduction = process.env.NODE_ENV === "production";
 // });
 
 // ---------------- START SERVER ----------------
+
+const express = require("express");
+const dotenv = require("dotenv");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+const path = require("path");
+const connectDB = require("./config/config");
+const userModel = require("./models/user");
+const routers=require("./router/router")
+
+dotenv.config();
+connectDB();
+
+const app = express();
+
+// Allow requests from your React frontend with credentials (cookies)
+app.use(
+  cors({
+    origin: "http://192.168.56.1:5173",
+  credentials: true
+  })
+);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/media", express.static(path.join(__dirname, "media")));
+app.use("/api",routers);
+app.use("/api/auth",routers);
+
+const isProduction = process.env.NODE_ENV === "production";
+
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

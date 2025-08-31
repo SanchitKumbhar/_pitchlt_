@@ -15,6 +15,8 @@ const TeamDetails = ({ selectedRoles, toggleRole }) => {
     "Sales Executive",
   ];
 
+
+
   return (
     <section className="bg-white border border-gray-200 rounded-xl shadow-md p-6 flex-1 h-full">
       <h2 className="text-xl font-semibold text-gray-800 mb-5">Team Details</h2>
@@ -67,7 +69,38 @@ const TeamDetails = ({ selectedRoles, toggleRole }) => {
 
 const PitchModalForm = () => {
   const [thumbnail, setThumbnail] = useState(null);
+  const [pitchDeck, setPitchDeck] = useState(null);
   const [selectedRoles, setSelectedRoles] = useState([]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("pitchTitle", "Example Title");
+    formData.append("tagline", "Example Tagline");
+    formData.append("fullDescription", "Example full description");
+    formData.append("rolesRequired", selectedRoles.join(","));
+    if (thumbnail) formData.append("image", thumbnail);
+    if (pitchDeck) formData.append("pitchDeck", pitchDeck);
+
+    try {
+      const token = localStorage.getItem("token"); // JWT from login
+      const res = await fetch("http://192.168.56.1:3000/api/create-pitch", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${token}`, // send JWT here
+        },
+      });
+
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
 
   const handleThumbnailUpload = (e) => {
     const file = e.target.files[0];
@@ -265,7 +298,7 @@ const PitchModalForm = () => {
         <button className="px-4 py-2 border border-blue-500 text-blue-600 rounded-md hover:bg-blue-50 cursor-pointer text-sm sm:text-base">
           Preview Pitch
         </button>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 cursor-pointer text-sm sm:text-base">
+        <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 cursor-pointer text-sm sm:text-base" onClick={handleSubmit}>
           Submit Pitch
         </button>
       </div>
@@ -276,3 +309,5 @@ const PitchModalForm = () => {
 };
 
 export default PitchModalForm;
+
+
