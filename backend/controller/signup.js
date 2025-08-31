@@ -5,21 +5,21 @@ const user = require("../models/user")
 const jwt=require("jsonwebtoken");
 
 const signup = async_handler(async (req, res) => {
-    const {username,password}=req.body;
+    const {email,password}=req.body;
 
-    const existance = await user.findOne({ username });
+    const existance = await user.findOne({ email });
     if (existance) {
         res.status(400);
-        throw  new Error("Username already exist");
+        throw  new Error("Email already exist");
     }
     console.log(password);
     const hash=await bcrypt.hash(password,10);
-    const newuser = new user({username,password:hash});
+    const newuser = new user({email,password:hash});
     newuser.save();
     res.send({
         "message" : "User registered successfully!!!"
-    })
-    
+    });
+
 });
 
 

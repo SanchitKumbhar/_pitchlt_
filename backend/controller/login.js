@@ -4,15 +4,15 @@ const bcrypt = require("bcryptjs");
 const user = require("../models/user");
 
 const login = async_handler(async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    const existance = await user.findOne({ username });
+    const existance = await user.findOne({ email });
 
     if (existance && (await bcrypt.compare(password, existance.password))) {
         const accessToken = jwt.sign(
             {
                 user: {
-                    username: existance.username,
+                    email: existance.email,
                     id: existance.id
                 }
             },
