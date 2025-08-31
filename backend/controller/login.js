@@ -20,7 +20,7 @@ const login = async_handler(async (req, res) => {
             { expiresIn: "120m" }
         );
 
-        res.cookie("accessToken", accessToken); // 🛠️ optional: set cookie name
+        res.cookie("accessToken", accessToken , {httpOnly:true,maxAge:12000000}); // 🛠️ optional: set cookie name
         res.status(200).json({ message: "Login successful", accessToken });
     } else {
         res.status(401).json({ message: "Invalid username or password" });
