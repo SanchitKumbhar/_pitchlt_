@@ -16,6 +16,8 @@ const signup = async_handler(async (req, res) => {
     const hash=await bcrypt.hash(password,10);
     const newuser = new user({username,email,password:hash});
     newuser.save();
+    console.log(newuser);
+    
     res.send({
         "message" : "User registered successfully!!!"
     });

@@ -85,7 +85,7 @@ const PitchModalForm = () => {
 
     try {
       const token = localStorage.getItem("token"); // JWT from login
-      const res = await fetch("http://192.168.56.1:3000/api/create-pitch", {
+      const res = await fetch("http://127.0.0.1:3000/api/create-pitch", {
         method: "POST",
         body: formData,
         headers: {
