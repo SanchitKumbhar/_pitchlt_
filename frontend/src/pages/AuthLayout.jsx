@@ -41,7 +41,7 @@ const AuthLayout = ({ children }) => {
             Login
           </button>
           <button
-            onClick={() => navigate("/register")}
+            onClick={() => navigate("/signup")}
             className={`px-5 py-2 text-sm md:text-lg font-medium ${
               !isLogin ? "bg-blue-500 text-white" : "bg-white text-blue-500"
             }`}

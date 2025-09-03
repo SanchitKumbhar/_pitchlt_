@@ -19,7 +19,7 @@ const login = async_handler(async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "120m" }
         );
-
+        console.log(accessToken);
         res.cookie("accessToken", accessToken , {httpOnly:true,maxAge:12000000}); // 🛠️ optional: set cookie name
         res.status(200).json({ message: "Login successful", accessToken });
     } else {
