@@ -88,9 +88,7 @@ const PitchModalForm = () => {
       const res = await fetch("http://127.0.0.1:3000/api/create-pitch", {
         method: "POST",
         body: formData,
-        headers: {
-          Authorization: `Bearer ${token}`, // send JWT here
-        },
+        credentials:"include"
       });
 
       const data = await res.json();
