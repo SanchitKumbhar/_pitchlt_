@@ -14,13 +14,24 @@ const login = async_handler(async (req, res) => {
                 user: {
                     email: existance.email,
                     id: existance.id
-                }
+                },
+sameSite: "None",
+secure: true,
+path:"/"
             },
             process.env.JWT_SECRET,
             { expiresIn: "120m" }
         );
         console.log(accessToken);
-        res.cookie("accessToken", accessToken , {httpOnly:true,maxAge:12000000}); // 🛠️ optional: set cookie name
+res.cookie("auth", accessToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production", // Secure must be true in production (HTTPS)
+    sameSite: "lax",  
+    path: "/",
+    maxAge: 2 * 24 * 60 * 60 * 1000,
+});
+
+// 🛠️ optional: set cookie name
         res.status(200).json({ message: "Login successful", accessToken });
     } else {
         res.status(401).json({ message: "Invalid username or password" });

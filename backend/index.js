@@ -254,6 +254,7 @@ const path = require("path");
 const connectDB = require("./config/config");
 const userModel = require("./models/user");
 const routers=require("./router/router")
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 connectDB();
@@ -262,11 +263,18 @@ const app = express();
 
 // Allow requests from your React frontend with credentials (cookies)
 app.use(cors({
-  origin: "http://localhost:5174",  // your frontend
-  credentials: true                 // allow cookies/tokens
+  origin: ["http://localhost:5173","https://0649218s-5173.inc1.devtunnels.ms","http://127.0.0.1:5173"],  // your frontend
+  credentials: true   // allow cookies/tokens
 }));
-
 app.use(express.json());
+app.use(cookieParser());
+
+app.use((req, res, next) => {
+  console.log("Incoming cookies:", req.headers.cookie);
+  console.log("Parsed cookies:", req.cookies);
+  next();
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use("/media", express.static(path.join(__dirname, "media")));
 app.use("/api",routers);
