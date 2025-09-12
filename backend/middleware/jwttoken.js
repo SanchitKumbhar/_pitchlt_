@@ -7,7 +7,6 @@ module.exports = function (req, res, next) {
   // read from cookie or header
   const token =
     req.cookies?.auth || req.header("Authorization")?.split(" ")[1];
-  console.log("Token from middleware:", req.cookies?.auth);
 
   if (!token) {
     return res.status(401).json({ message: "token not provided" });

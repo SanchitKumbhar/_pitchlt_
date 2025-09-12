@@ -32,9 +32,6 @@ const pitchSchema = new mongoose.Schema({
         "Data Scientist",
         "Sales Executive"
       ]
-    }],
-    inviteUsers: [{
-      type: String // could be usernames or user IDs
     }]
   },
   media: {
@@ -66,7 +63,6 @@ const pitchSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
-    default:"688f109522e9be696fce6852"
   }
 }, { timestamps: true });
 
