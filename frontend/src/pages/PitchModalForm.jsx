@@ -85,13 +85,12 @@ const PitchModalForm = () => {
 
     try {
       const token = localStorage.getItem("token"); // JWT from login
-      const res = await fetch("http://127.0.0.1:3000/api/create-pitch", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: `Bearer ${token}`, // send JWT here
-        },
-      });
+    const res = await fetch("http://127.0.0.1:3000/api/create-pitch", {
+      method: "POST",
+      body: formData,
+      credentials: "include"   // ✅ cookie is sent automatically
+    });
+
 
       const data = await res.json();
       console.log(data);
