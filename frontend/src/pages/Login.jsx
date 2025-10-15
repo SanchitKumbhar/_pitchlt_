@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import AuthLayout from "../pages/AuthLayout.jsx";
 
@@ -10,12 +9,12 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://127.0.0.1:3000/api/auth/login", {
+      const res = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // 🔥 this allows sending/receiving cookies
+        credentials: "include", // <-- Add this line
         body: JSON.stringify({ email, password }),
       });
 
