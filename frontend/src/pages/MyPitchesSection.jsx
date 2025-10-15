@@ -1,6 +1,12 @@
-
 import React from "react";
-import { FaSearch, FaPlus, FaArrowUp, FaUsers, FaEdit, FaEye } from "react-icons/fa";
+import {
+  FaSearch,
+  FaPlus,
+  FaArrowUp,
+  FaUsers,
+  FaEdit,
+  FaEye,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const MyPitchesSection = () => {
@@ -88,12 +94,21 @@ const MyPitchesSection = () => {
         </div>
 
         {/* Create Button */}
-        <button className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 w-full md:w-auto">
-          <FaPlus />
-          <Link to= "/create-pitch">
-          <span>Create New Pitch</span>
-          </Link>
-        </button>
+        <div className="flex gap-3 w-full md:w-auto">
+          <button className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 w-full md:w-auto">
+            <FaPlus />
+            <Link to="/create-post">
+              <span>Create Post</span>
+            </Link>
+          </button>
+
+          <button className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 w-full md:w-auto">
+            <FaPlus />
+            <Link to="/create-pitch">
+              <span>Create New Pitch</span>
+            </Link>
+          </button>
+        </div>
       </div>
 
       {/* Pitch Cards */}

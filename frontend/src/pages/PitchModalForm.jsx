@@ -119,7 +119,7 @@ const PitchModalForm = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gray-50">
         <Navbar2 />
     <div className="p-6 md:p-10 lg:px-24 w-full mx-auto">
       <h2 className="text-3xl font-bold text-gray-800 mb-4">Create New Pitch</h2>
