@@ -54,16 +54,6 @@ const TeamDetails = ({ selectedRoles, toggleRole }) => {
           </div>
         </div>
 
-        {/* <div>
-          <label className="block text-gray-600 mb-1">
-            Invite Specific Users (Optional)
-          </label>
-          <input
-            type="text"
-            placeholder="Enter username"
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
-          />
-        </div> */}
       </div>
     </section>
   );
@@ -86,12 +76,16 @@ const PitchModalForm = () => {
     if (pitchDeck) formData.append("pitchDeck", pitchDeck);
 
     try {
+      
       const token = localStorage.getItem("token"); // JWT from login
-      const res = await fetch("http://127.0.0.1:3000/api/create-pitch", {
-        method: "POST",
-        body: formData,
-        credentials: "include",
-      });
+
+    const res = await fetch("http://127.0.0.1:3000/api/create-pitch", {
+      method: "POST",
+      body: formData,
+      credentials: "include"   // ✅ cookie is sent automatically
+    });
+
+//  d4bcf8e130bc02b46769266ea4e15eaa14cb24f9
 
       const data = await res.json();
       console.log(data);
