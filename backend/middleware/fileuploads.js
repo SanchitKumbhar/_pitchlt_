@@ -3,7 +3,7 @@ const path=require("path");
 const mediaPath = path.join(__dirname, "../media");
 
 const storage = multer.diskStorage({
-  destination:(req,file,cb)=>{
+  destination:(req,res,cb)=>{
     cb(null,mediaPath);;
   },
   filename:(req,file,cb)=>{
