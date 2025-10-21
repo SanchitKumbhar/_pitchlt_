@@ -76,7 +76,7 @@ const PitchModalForm = () => {
     if (pitchDeck) formData.append("pitchDeck", pitchDeck);
 
     try {
-      
+
       const token = localStorage.getItem("token"); // JWT from login
 
     const res = await fetch("http://127.0.0.1:3000/api/create-pitch", {
@@ -85,7 +85,6 @@ const PitchModalForm = () => {
       credentials: "include"   // ✅ cookie is sent automatically
     });
 
-//  d4bcf8e130bc02b46769266ea4e15eaa14cb24f9
 
       const data = await res.json();
       console.log(data);
