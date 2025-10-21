@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import { Upload } from "lucide-react";
 import Navbar2 from "../components/Navbar2";
-import axios from "axios";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -62,43 +61,11 @@ const CreatePost = () => {
     setPitch("");
   };
 
- 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const formData = new FormData();
-    formData.append("type", pitch);        
-    formData.append("review", description); 
-
-    // attach multiple images
-    files.forEach((file) => {
-      formData.append("image", file); 
-    });
-
-    const res = await axios.post("/api/create-post", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true, 
-      onUploadProgress: (progressEvent) => {
-        const percent = Math.round(
-          (progressEvent.loaded * 100) / progressEvent.total
-        );
-        console.log("Upload progress:", percent + "%");
-      },
-    });
-
-    console.log("Success:", res.data);
-    alert("Post created successfully!");
-    resetForm();
-  } catch (err) {
-    console.error("Error:", err.response?.data || err.message);
-    alert("Failed to create post. Check console.");
-  }
-};
-
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitting", { title, description, pitch, files });
+    alert(`Submitting ${files.length} file(s). Check console for details.`);
+  };
 
   return (
     <div className="bg-gray-50">
