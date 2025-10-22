@@ -11,6 +11,8 @@ import PitchModalForm from './pages/PitchModalForm.jsx';
 import JoinedTeams from './pages/JoinedTeams.jsx';
 import Explore from './pages/Explore.jsx';
 import CreatePost from './pages/CreatePost.jsx';
+import EditPost from './pages/EditPost.jsx';
+import EditPitch from './pages/EditPitch.jsx';
 
 function App() {
   return (
@@ -22,9 +24,11 @@ function App() {
         <Route path="/my-pitches" element={<MyPitches />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-pitch" element={<PitchModalForm />} />
+        <Route path="/edit-pitch" element={<EditPitch />} />
         <Route path="/joined-teams" element={<JoinedTeams />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/edit-post" element={<EditPost />} />
 
         
 
