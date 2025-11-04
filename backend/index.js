@@ -269,11 +269,11 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-app.use((req, res, next) => {
-  console.log("Incoming cookies:", req.headers.cookie);
-  console.log("Parsed cookies:", req.cookies);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("Incoming cookies:", req.headers.cookie);
+//   console.log("Parsed cookies:", req.cookies);
+//   next();
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use("/media", express.static(path.join(__dirname, "media")));

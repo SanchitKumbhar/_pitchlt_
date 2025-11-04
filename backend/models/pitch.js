@@ -48,7 +48,6 @@ const pitchSchema = new mongoose.Schema({
   categorization: {
     category: [{
       type: String,
-      enum: ["AI", "EdTech", "Green Energy", "Healthcare", "FinTech"]
     }],
     privacy: {
       type: String,

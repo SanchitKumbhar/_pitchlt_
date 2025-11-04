@@ -1,0 +1,122 @@
+Of course\! Here is the API documentation for your endpoint.
+
+-----
+
+## **API Documentation: Create a New Pitch**
+
+This document details the endpoint used to create a new project pitch.
+
+### **Endpoint**
+
+`POST /create-pitch`
+
+This endpoint allows an authenticated user to create a new pitch by providing details and optionally uploading media files like an image and a pitch deck.
+
+### **Authentication**
+
+This endpoint is protected. A valid JSON Web Token (JWT) must be included in the request headers.
+
+  * **Header**: `Authorization`
+  * **Value**: `Bearer <YOUR_JWT_TOKEN>`
+
+### **Content-Type**
+
+Since this endpoint handles file uploads, the request must have a `Content-Type` of **`multipart/form-data`**.
+
+### **Request Body Fields**
+
+The following fields should be sent as `form-data`.
+
+| Field | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `pitchTitle` | String | **Yes** | The main title of the pitch. |
+| `tagline` | String | **Yes** | A short, catchy tagline for the pitch. |
+| `fullDescription` | String | **Yes** | A detailed description of the project idea. |
+| `lookingForMembers`| String | **Yes** | Must be `"true"` or `"false"`. Indicates if you are seeking team members. |
+| `rolesRequired` | String | No | A comma-separated list of roles you are looking for (e.g., `Frontend Developer,UI/UX Designer`). |
+| `inviteUsers` | String | No | A comma-separated list of user IDs to invite to the project. |
+| `category` | String | No | A comma-separated list of relevant categories (e.g., `Fintech,AI,Healthcare`). |
+| `privacy` | String | **Yes** | The privacy setting for the pitch (e.g., `Public`, `Private`). |
+| `tags` | String | No | A comma-separated list of tags for discoverability (e.g., `startup,innovation`). |
+| `videoLink` | String | No | A URL to a video pitch (e.g., a YouTube or Vimeo link). |
+| `image` | File | No | An image file (e.g., logo, banner) for the pitch. (Max 1) |
+| `pitchDeck` | File | No | A presentation file (e.g., PDF, PPT) for the pitch. (Max 1) |
+
+-----
+
+### **Responses**
+
+#### ✅ Success Response
+
+  * **Code**: `201 Created`
+  * **Content**: Returns a success message and a JSON object representing the newly created pitch.
+
+<!-- end list -->
+
+```json
+{
+    "message": "Pitch created successfully",
+    "pitch": {
+        "_id": "634a1b2cdef123456789abcd",
+        "pitchTitle": "AI-Powered Personal Finance App",
+        "tagline": "Your smart assistant for managing money.",
+        "fullDescription": "An application that uses machine learning to provide personalized financial advice...",
+        "teamDetails": {
+            "lookingForMembers": true,
+            "rolesRequired": ["Frontend Developer", "Data Scientist"],
+            "inviteUsers": ["userId123", "userId456"]
+        },
+        "media": {
+            "image": "/media/1665800492123_my_app_logo.png",
+            "pitchDeck": "/media/1665800492123_pitch_deck.pdf",
+            "videoLink": "https://www.youtube.com/watch?v=example"
+        },
+        "categorization": {
+            "category": ["Fintech", "AI"],
+            "privacy": "Public",
+            "tags": ["finance", "startup"]
+        },
+        "createdBy": "507f1f77bcf86cd799439011",
+        "createdAt": "2025-10-15T12:08:12.123Z",
+        "updatedAt": "2025-10-15T12:08:12.123Z"
+    }
+}
+```
+
+#### ❌ Error Responses
+
+  * **Code**: `400 Bad Request`
+
+      * **Reason**: One or more required fields are missing or invalid.
+      * **Content**: `{ "message": "Validation error: 'pitchTitle' is required." }`
+
+  * **Code**: `401 Unauthorized`
+
+      * **Reason**: The JWT is missing, invalid, or expired.
+      * **Content**: `{ "message": "Authentication token is required." }`
+
+  * **Code**: `500 Internal Server Error`
+
+      * **Reason**: An unexpected error occurred on the server.
+
+-----
+
+### **Example Request (cURL)**
+
+Here is an example of how to make a request using cURL.
+
+```bash
+curl -X POST http://localhost:3000/api/v1/create-pitch \
+-H "Authorization: Bearer <YOUR_JWT_TOKEN>" \
+-F "pitchTitle=AI-Powered Personal Finance App" \
+-F "tagline=Your smart assistant for managing money." \
+-F "fullDescription=An application that uses machine learning to provide personalized financial advice." \
+-F "lookingForMembers=true" \
+-F "rolesRequired=Frontend Developer,Data Scientist" \
+-F "category=Fintech,AI" \
+-F "privacy=Public" \
+-F "tags=finance,startup" \
+-F "videoLink=https://www.youtube.com/watch?v=example" \
+-F "image=@/path/to/your/app_logo.png" \
+-F "pitchDeck=@/path/to/your/pitch_deck.pdf"
+```
