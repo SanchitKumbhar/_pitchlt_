@@ -13,6 +13,13 @@ const userschema = new mongoose.Schema({
     unique: true,
   },
 
+  userType:{
+    type:String,
+    enum:["Founder","Investor"],
+    required:true,
+    default:"Founder"
+  },
+
   //
   password: {
     type: String,

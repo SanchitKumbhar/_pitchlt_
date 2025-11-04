@@ -21,10 +21,10 @@ const post = new mongoose.Schema({
         type:String
     }
     },
-    type:{
+    title:{
       type:String 
     },
-    review:{
+    description:{
         type:Number,
     }
 

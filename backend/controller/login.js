@@ -14,10 +14,7 @@ const login = async_handler(async (req, res) => {
                 user: {
                     email: existance.email,
                     id: existance.id
-                },
-sameSite: "None",
-secure: true,
-path:"/"
+                }
             },
             process.env.JWT_SECRET,
             { expiresIn: "120m" }
@@ -25,8 +22,8 @@ path:"/"
         console.log(accessToken);
 res.cookie("auth", accessToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // Secure must be true in production (HTTPS)
-    sameSite: "lax",  
+    secure: true, // Secure must be true in production (HTTPS)
+    sameSite: "none",  
     path: "/",
     maxAge: 2 * 24 * 60 * 60 * 1000,
 });
