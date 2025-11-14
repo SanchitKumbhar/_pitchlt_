@@ -34,12 +34,12 @@ const events = mongoose.Schema({
         }
     },
     description:{
-        type:Text,
+        type:String,
         required:true
     },
     created_at:{
         type:Date,
-        default:Date.now()
+        default: Date.now
     },
     is_active:{
         type:Boolean,
