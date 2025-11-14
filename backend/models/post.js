@@ -25,7 +25,7 @@ const post = new mongoose.Schema({
       type:String 
     },
     description:{
-        type:Number,
+        type:String
     }
 
 });

@@ -15,7 +15,7 @@ const userschema = new mongoose.Schema({
 
   userType:{
     type:String,
-    enum:["Founder","Investor"],
+    enum:["Founder","Community Member","Incubator"],
     required:true,
     default:"Founder"
   },
