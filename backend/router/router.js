@@ -10,6 +10,7 @@ const reviews = require("../models/reviews");
 const get_pitches = require("../controller/get-pitches");
 const get_posts = require("../controller/get-posts");
 const eventsController = require("../controller/events");
+const hiring = require("../controller/hiring")
 router=express.Router()
 
 
@@ -31,6 +32,7 @@ router.get("/events", eventsController.getEvents);
 router.get("/events/:id", eventsController.getEvent);
 router.put("/events/:id", token__middleware, eventsController.updateEvent);
 router.delete("/events/:id", token__middleware, eventsController.deleteEvent);
+router.post("/hiring",token__middleware,hiring.create_hiring)
 
 
 module.exports=router;

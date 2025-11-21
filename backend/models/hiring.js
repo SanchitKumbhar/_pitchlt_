@@ -1,0 +1,104 @@
+const mongoose=require("mongoose");
+
+const hiring = new mongoose.Schema({
+    Personal_Details:{
+    fullname:{
+        type:String,
+        required : true
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    phonenumber:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    date:{
+        type:Date,
+        default:Date.now
+    },
+    gender:{
+        type:String,
+        enum:["Male","Female","Other"],
+        default: "Male"
+    },
+    address:{
+        type:String,
+    }
+},
+    Position_Details:{
+        jobrole:{
+            type:String,
+            required:true
+        },
+        jobtype:{
+            type:String,
+            enum:["Part-Time","Full-Time","Intership"],
+            default:"Full-Time"
+        },
+        preferred_Location:{
+            type:String,
+            required:true
+        },
+        salary:{
+            type:Number,
+            required:true
+        }
+    },
+    Skill_Experience:{
+        highest_qualification:{
+            type:String,
+            required:true
+        },
+        experience:{
+            type:Number,
+            required:true
+        },
+        skills:{
+            type:String,
+            required:true
+        },
+        past_companies:{
+            type:String
+        },
+        resume:{
+            type:String,
+            require:true
+        },
+        
+    },
+    Additional_Ddetails:{
+        linkedin:{
+            type:String,
+            required:true
+        },
+        github:{
+            type:String,
+            required:true
+        },
+        dateofjoining:{
+            type:Date,
+            required:true
+        },
+        self_intro:{
+            type:String
+        },
+    },
+    Agreement:{
+        checkbox1:{
+            type:Boolean,
+            required:true,
+            default:false
+        },
+        checkbox2:{
+            type:Boolean,
+            required:true,
+            default:false
+        }
+    }
+})
+
+module.exports = hiring;

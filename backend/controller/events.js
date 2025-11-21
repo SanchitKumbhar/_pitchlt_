@@ -4,7 +4,6 @@ const Events = require("../models/events");
 // Create new event (protected)
 const createEvent = async_handler(async (req, res) => {
     const {
-        pitch_user,
         pitch,
         event_type = "online",
         title,
@@ -12,19 +11,21 @@ const createEvent = async_handler(async (req, res) => {
         description,
     } = req.body;
 
-    if (!title || !description || !pitch || !pitch_user) {
+    if (!title || !description || !pitch ) {
         return res.status(400).json({ message: "Missing required fields" });
     }
 
     const newEvent = await Events.create({
         user: req.user?.user?.id || req.user?.user?._id,
-        pitch_user,
         pitch,
         event_type,
         title,
         media,
         description,
-    });
+    }); 
+
+    console.log(newEvent);
+    
 
     res.status(201).json({ message: "Event created", event: newEvent });
 });

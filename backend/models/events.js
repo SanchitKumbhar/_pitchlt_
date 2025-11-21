@@ -6,11 +6,6 @@ const events = mongoose.Schema({
         required:true,
         ref:"User",
     },
-    pitch_user:{
-        type:mongoose.Schema.ObjectId,
-        required:true,
-        ref:"User",
-    },
     pitch:{
         type:mongoose.Schema.ObjectId,
         required:true,
