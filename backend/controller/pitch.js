@@ -46,7 +46,7 @@ const pitch_reg = async_handler(async (req, res) => {
 
 })
 
-const updatepitch= async_handler(async(req,res)=>{
+const updatepitch = async_handler(async(req,res)=>{
     const pitchId = req.params.id;
     const existing = await pitch.findById(pitchId);
     if(!existing) return res.status(404).json({ message: "Pitch not found" });
@@ -96,4 +96,4 @@ const updatepitch= async_handler(async(req,res)=>{
 
 // keep backwards compatible export: function as default with update attached
 module.exports = pitch_reg;
-module.exports.updatepitch = updatepitch; 
+module.exports.updatepitch = updatepitch;
