@@ -12,10 +12,9 @@ const userschema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-
   userType:{
     type:String,
-    enum:["Founder","Community Member","Incubator"],
+    enum:["Founder","Virtual-Investor(Community Member)"],
     required:true,
     default:"Founder"
   },
@@ -27,4 +26,4 @@ const userschema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("User", userschema, "authuser");
+module.exports = mongoose.model("User", userschema);

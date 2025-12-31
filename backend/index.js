@@ -263,7 +263,7 @@ const app = express();
 
 // Allow requests from your React frontend with credentials (cookies)
 app.use(cors({
-  origin: ["http://localhost:5173","https://0649218s-5173.inc1.devtunnels.ms","http://127.0.0.1:5173"],  // your frontend
+  // origin: ["http://localhost:5173","https://0649218s-5173.inc1.devtunnels.ms","http://127.0.0.1:5173"],  // your frontend
   credentials: true   // allow cookies/tokens
 }));
 app.use(express.json());

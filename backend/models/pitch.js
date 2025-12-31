@@ -62,7 +62,30 @@ const pitchSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
-  }
+  },
+  likes: {
+    type: Number,
+    default: 0,
+    required: false
+  },
+  comments: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+      },
+      text: {
+        type: String,
+        required: true,
+        trim: true
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ]
 }, { timestamps: true });
 
 module.exports = mongoose.model("Pitch", pitchSchema);

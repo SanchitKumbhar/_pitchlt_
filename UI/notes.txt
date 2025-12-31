@@ -1,0 +1,26 @@
+1. Gamified "Investor" Status
+Give users a sense of progression. Even if they aren't investing real money, they should feel the thrill of "calling it early."
+
+Virtual Portfolio: Give every user a set amount of "Platform Credits" (e.g., FounderTokens) to "invest" in pitches they like. If that startup hits a milestone, the user's rank increases.
+
+Leaderboards: Feature "Top Scouts" or "Predictors" who consistently identify high-quality pitches.
+
+Badges & Tiers: Unlock titles like "Early Adopter," "Tech Guru," or "Beta Tester" based on the quality of their reviews.
+
+2. Influence & Governance
+People stay active when they feel their voice actually changes the outcome.
+
+Micro-Polls: Instead of just long reviews, let founders post specific A/B tests (e.g., "Which logo do you prefer?" or "Should we build Feature A or B first?").
+
+Q&A Upvoting: Allow the community to upvote the most pressing questions for the founder to answer in a video follow-up.
+
+
+future:
+3. Tangible Rewards (The "Perks" Model)
+Since users are providing free "consulting" and "validation," they should get something back.
+
+Early Access/Beta Testing: Active reviewers get first dibs on the product once it launches.
+
+Founding Member Discounts: Users who engage with a pitch get a permanent discount or "Lifetime Pro" status if the startup succeeds.
+
+Reward Tokens: Allow users to earn tokens for high-quality reviews (voted helpful by the founder) that can be redeemed for real-world rewards or platform perks.
